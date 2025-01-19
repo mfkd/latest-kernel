@@ -55,6 +55,7 @@ pub fn main() !void {
     const response = try get(kernel_releases_url, headers, &client, alloc);
 
     const result = try std.json.parseFromSlice(KernelReleases, allocator, response.items, .{ .ignore_unknown_fields = true });
+    defer result.deinit();
 
     try writer.print("{s}\n", .{result.value.latest_stable.version});
 }
