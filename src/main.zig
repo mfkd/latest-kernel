@@ -56,7 +56,7 @@ pub fn main() !void {
 
     const result = try std.json.parseFromSlice(KernelReleases, allocator, response.items, .{ .ignore_unknown_fields = true });
 
-    try writer.print("{s}\n", .{result.value.latest_stable.version});
+    try writer.print("\x1b[31m{s}\x1b[0m\n", .{result.value.latest_stable.version});
 }
 
 fn get(
